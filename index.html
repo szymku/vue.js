@@ -4,18 +4,31 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="app.css">
 </head>
 <body>
-	
-	<div id="demo" class="container">
+	<article id="post" class="container" v-show="isVisible">
 
-		<input type="text" v-model="name">
-	
+		<button class="glyphicon glyphicon-remove-sign pull-right" v-on="click: isVisible = false"></button>
 
-		<pre>{{ $data | json }}</pre>
-    </div>
+		<h1>Some post</h1>
+		<p>lorem  lorem lorem</p>
 
+		<button type="button"
+				class="btn btn-default btn-lg"
+				v-class="active: liked"
+				v-on="click: toggleLike"
+		>
+			<span class="glyphicon glyphicon-thumbs-up"></span> {{ likesCount }}
+	    </button>
 
+		<br><br>
+
+		<pre>
+			{{ $data | json}}
+		</pre>
+
+	</article>
 
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.11.10/vue.min.js"></script>
 	<script src="app.js"></script>

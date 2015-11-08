@@ -1,18 +1,24 @@
 new Vue({
-	el:  '#demo',
+
+	el: '#post',
 
 	data: {
-		name: 'foobar'
+		isVisible: true,
+		liked: false,
+		likesCount: 10
 	},
 
-	ready: function() {
+	methods:{
 
-		var that = this;
+		toggleLike: function() {
 
-		setInterval(function() {
-			that.name = 'Updated';
-		}, 5000);
+			this.liked = ! this.liked;
+			this.liked ? this.likesCount++ : this.likesCount--;
+		}
+
 	}
+
+
 
 
 });
