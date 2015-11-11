@@ -6,29 +6,32 @@
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="app.css">
 </head>
-<body>
-	<article id="post" class="container" v-show="isVisible">
 
-		<button class="glyphicon glyphicon-remove-sign pull-right" v-on="click: isVisible = false"></button>
+<body id="demo" class="container">
 
-		<h1>Some post</h1>
-		<p>lorem  lorem lorem</p>
+	<input v-model="search" class="form-control" placeholder="search">
 
-		<button type="button"
-				class="btn btn-default btn-lg"
-				v-class="active: liked"
-				v-on="click: toggleLike"
-		>
-			<span class="glyphicon glyphicon-thumbs-up"></span> {{ likesCount }}
-	    </button>
+	<table  class="table table-striped">
+		<thead>
+			<tr>
+				<th v-repeat="column: columns">
+					<a href="#" 
+					   v-on="click: sortBy(column)" 
+					   v-class="active: sortKey == column"
+					>
+						{{ column | capitalize}}
+					</a>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr v-repeat="people | filterBy search | orderBy sortKey reverse">
+				<td>{{ name }}</td>
+				<td>{{ age }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-		<br><br>
-
-		<pre>
-			{{ $data | json}}
-		</pre>
-
-	</article>
 
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/0.11.10/vue.min.js"></script>
 	<script src="app.js"></script>
